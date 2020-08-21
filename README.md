@@ -9,8 +9,8 @@ it more than makes up for with its light implementation, easy syntax, and lightw
 C++ to address some of the features that are present in other libraries but lacking out of the box
 with BearLibTerminal. 
 A few examples of whats offered: is A* path finding, a Dijkstra Map generator,
-Random integer and float generators, Perlin noise, and a maze generator, and an 
-extended feature set for BLT's color_t type, just to name a few. A full list of 
+Random integer and float generators, Perlin noise, and a maze generator, BSP dungeon generator,
+and an interface for BLT's color_t type, just to name a few. A full list of 
 what is implemented is below. This is a work in progress, so not all of the bugs
 have been shaken out. More features will be added regularly.
 
@@ -27,10 +27,14 @@ How it works
   size to be used for the layout. The Point structure has a .blocks value to indicate whether the current
   Point is a wall/obstacle or an open area.
     Once you have generated your fields of desired size you can pass it through the maze generator, the dungeon
-  generator, or implement something yourself through the shape classes.
+  generator, or implement something yourself through the shape classes, you may also combine options, such as 
+  generating a maze field and passing the maze field to one of the dungeon generators to build on top of.
     With your field setup you can use the Dijkstra Map generator and the accompanying dijkMove function
  for implementing NPC movement on the field. A basice entity class is included for creaing both
- NPC's or player characters.
+ NPC's or player characters. There is also a default game loop that may be used, for those that do not
+ wish to implement their own.
+ 
+ 
 
  Feature set
 --------------
@@ -38,7 +42,33 @@ How it works
 Path finding:
 ------------
 
-Breadth First Search & A* based path finding
+- Breadth First Search & A* based path finding
+- Dijkstra Map automated pathing for NPC's
+
+
+Generators:
+-----------
+
+Random Number - integer and float
+
+Dungeon - There is 2 dungeon generating algorithms available for use at those moment:
+	- Basic Map generator - uses random place ment and collision detection to build a dungeon layout
+	- BSP Map generator - this uses Binary Space Partition to create a zero overlapping, or minor overlapping room
+				layout depending on your desired tolerance constraints.
+
+Maze generator - input a field and this outputs a maze! can be used standalone or combined with one of the above dungeon generators
+		to make more complex maps.
+
+Perlin Noise Generator - many, many uses from placing items to making landscapes Perlin noise is used for all sorts of
+			procedural generation. Outputs valuse between 0.0 and 1.0.
+
+Colors - easy interface to BLT's color_t type, as well as a gradients and fades.
+
+Dijkstra Map - creation of single focus and multi point focus Dijkstra maps of levels
+	       and functions for NPC interaction with Dijkstra Maps
+
+Name Generator - [color] [texture] [item] format, i.e. a [purple] [forthing] [potion]
+		or [red] [hairy] [troll]
 
 
 Data structures:
@@ -63,24 +93,3 @@ linked list - dynamically allocated to be able to grow and shrink in size.
 Queue - FIFO stack used in many algorithms
 
 Stack - classic LIFO stack, see above.
-
-
-Generators:
------------
-
-Random Number - integer and float
-
-Dungeon - "spray and pray" room and tunnel, bsp, and maze based dungeons.
-
-Perlin Noise - noise generator, many uses.
-
-Colors - easy interface to BLT's color_t type, as well as a gradients and fades.
-
-Dijkstra Map - creation of single focus and multi point focus Dijkstra maps of levels
-	       and functions for NPC interaction with Dijkstra Maps
-
-Name Generator - [color] [texture] [item] format, i.e. a [purple] [forthing] [potion]
-		or [red] [hairy] [troll]
-
-
-
