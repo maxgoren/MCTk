@@ -14,7 +14,7 @@ extended feature set for BLT's color_t type, just to name a few. A full list of
 what is implemented is below. This is a work in progress, so not all of the bugs
 have been shaken out. More features will be added regularly.
 
-##How it works
+How it works
 --------------
     Once bearlibterminal launches the console window, aside from basic input and out put pretty much
   everything else is up to the programmer as far as features go. The apex data structure for creating
@@ -32,16 +32,16 @@ have been shaken out. More features will be added regularly.
  for implementing NPC movement on the field. A basice entity class is included for creaing both
  NPC's or player characters.
 
-# Feature set
+ Feature set
 --------------
 
-##Path finding:
+Path finding:
 ------------
 
 Breadth First Search & A* based path finding
 
 
-##Data structures:
+Data structures:
 ----------------
 Point - more than just x/y, the features of this library are all developed
        around the idea of using a point based grid system not just for making
@@ -55,7 +55,7 @@ Rectangle - see above.
 Circle - see above.
 
 
-##Containers:
+Containers:
 -----------
 
 linked list - dynamically allocated to be able to grow and shrink in size.
@@ -65,7 +65,7 @@ Queue - FIFO stack used in many algorithms
 Stack - classic LIFO stack, see above.
 
 
-##Generators:
+Generators:
 -----------
 
 Random Number - integer and float
