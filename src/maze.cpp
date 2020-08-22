@@ -46,7 +46,12 @@ bool dfMaze::OOB(Point p)
 
 zone dfMaze::getMaze()
 {
-  return {layout, mapW, mapH, true};
+  zone retmaze;
+  retmaze.ismaze = true;
+  retmaze.layout = this->layout;
+  retmaze.mapH = this->mapH;
+  retmaze.mapW = this->mapW;
+  return retmaze;
 }
 
 
@@ -55,7 +60,6 @@ void dfMaze::makeMaze()
  int i;
  Point start = {mapW/2, mapH/2};
  Point current, next, rdir;
- layout[start.x][start.y].blocks = false;
  staq.push(start);
  while (!staq.empty())
  {
