@@ -18,6 +18,8 @@ versison will also be made available.
 
 How it works
 --------------
+
+
     Once bearlibterminal launches the console window, aside from basic input and out put pretty much
   everything else is up to the programmer as far as features go. The apex data structure for creating
   something useful with BLT is the 'Point' (see point.h)
@@ -35,10 +37,62 @@ How it works
   generating a maze field and passing the maze field to one of the dungeon generators to build on top of.
     With your field setup you can use the Dijkstra Map generator and the accompanying dijkMove function
  for implementing NPC movement on the field. A basice entity class is included for creaing both
- NPC's or player characters. There is also a default game loop that may be used, for those that do not
- wish to implement their own.
+ NPC's or player characters. 
  
+ ## Example Usage
  
+ MCTk is meant to be used in conjunction with BearLibTerminal. BearLibTerminal must be installed on your
+ system inorder to build a project with MCTk.
+ To use MCTk, you must include the header mctk.h in your project, and the include/ and src/ folders MUST 
+ be in the same folder as mctk.h
+ 
+ A minimum of C++11 is required to compile MCTk, with the code below saved as mctkexample.cpp:
+ compile:
+ g++ --std=c++11 mctkexample.cpp -o mctkexample -L. libBearTerminal.dylib
+ 
+ run
+ ./mctkexample
+ 
+ ```cpp
+#include "BearLibTerminal.h"
+#include "mctk.h"
+
+int main()
+{
+
+  terminal_open();                     //settin up a bearlibterminal console window
+  terminal_set("window: size=80x40");
+
+  mctk::board blanklayout(80, 40);          //create a blank zone with the supplied dimensions
+  mctk::zone base = blanklayout.getZone();  //retrieve the zone for usage
+  mctk::dfMaze maze(base);                  //initialize the maze generator without blank zone
+  
+  maze.makeMaze();                          //create a maze
+  base = maze.getMaze();                    //retrieve our zone which no contains a maze
+  
+  mctk::dungeon dg(base);                   //initialize the dungeon generator with our maze
+  dg.basic(8, 8);                           //use the basic dungeon generator, max # of rooms = 8, max room size = 8x8 
+  base.layout = dg.getField();              //retrieve our updated zone
+  
+  terminal_refresh();
+  while (int k = terminal_read() != TK_Q)
+  {
+    terminal_clear();
+    mctk::render(base);                           //render our generated maze dungeon zone on the bearlibterminal
+    terminal_refresh();                     //console window.
+  }
+  terminal_close();
+  return 0;
+}
+```
+Without a maze:
+
+![No maze](https://www.maxcodes.info/~maxgoren/nomaze.png)
+
+composite dungeon and maze:
+
+![With maze](https://www.maxcodes.info/~maxgoren/withmaze.png)
+
 
  Feature set
 --------------
