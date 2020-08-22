@@ -49,7 +49,7 @@ void dungeon::dig(Room* current)
     for (y = current->uL.y; y <= current->lR.y; y++)
     {
 
-        layout[x][y].blocks = true;
+        layout[x][y].blocks = false;
         layout[x][y].s = '-';
         layout[x][y].costm = 1;
         if (current->id == 77)
@@ -357,13 +357,15 @@ void dungeon::basic(int numRoom, int maxSize)
    }
  outLine();
 }
+
 bool dungeon::inbounds(Point p)
 {
   return p.x > 0 && p.x < mapW && p.y > 0 && p.y < mapH;
 }
+
 void dungeon::outLine()
 {
- int x, y;
+ /*int x, y;
  for (x = 0; x < mapW; x++)
  {
   for (y = 0; y < mapH; y++)
@@ -409,5 +411,5 @@ void dungeon::outLine()
     }
    }
   }
- }
+ }*/
 }

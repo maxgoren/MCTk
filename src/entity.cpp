@@ -44,7 +44,7 @@ ent::ent(int x, int y, int id, char ch)
 
 bool ent::canMove(field layout, int x, int y)
 {
- if (layout[x][y].blocks == true) {
+ if (layout[x][y].blocks == false) {
     return true;
  } else {
    return false;
@@ -59,14 +59,15 @@ void ent::move(field layout, int dx, int dy)
  {
  this->pos.x += dx;
  this->pos.y += dy;
+ std::cout<<" mv "<<layout[pos.x+2][pos.x+2].level<<"\n";
  }
 }
 
 void ent::render()
 {
-  terminal_layer(2);
+  terminal_layer(3);
   terminal_color("magenta");
-  terminal_print(pos.x, pos.y, "G");
+  terminal_printf(pos.x, pos.y, "%c", ch[0]);
 }
 
 
@@ -88,7 +89,8 @@ void ent::automove(field layout)
     checking.x = pos.x + dir.x;
     checking.y = pos.y + dir.y;
     checking.level = layout[checking.x][checking.y].level;
-    if (checking.level < bestValue && layout[checking.x][checking.y].blocks == true 
+    std::cout<<"choise: "<<i<<" "<<checking.level<<"\n";
+    if (checking.level < bestValue && layout[checking.x][checking.y].blocks == false 
     && layout[checking.x][checking.y].populated == false)
     {                                   //If the value being checked is lower than the current lowest &&
       bestValue = checking.level;       // the point is one that can be walked on && theres not another 
@@ -96,10 +98,11 @@ void ent::automove(field layout)
     }
   }
   
-  layout[pos.x][pos.y].blocks = true;       //set the currently occupied point to
+  layout[pos.x][pos.y].blocks = false;       //set the currently occupied point to
   layout[pos.x][pos.y].populated = false;    // make it unoccupied
   pos = best;                                        //set the goblins position as the one we chose as best
   layout[pos.x][pos.y].blocks = true;        //set the newly occupied current point to occupied. 
-  layout[pos.x][pos.y].populated = false;
+  layout[pos.x][pos.y].populated = true;
+  std::cout<<" automv "<<layout[pos.x][pos.y].level<<"\n";
 }
 }

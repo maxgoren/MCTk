@@ -148,28 +148,28 @@ void dungeon::crNB1(std::vector<Room*> rooms)
    {
       for (ax = start->cent.x; ax <= (fin->cent.x + start->cent.x) / 2; ax++)
       {
-	      layout[ax][start->cent.y].blocks = true;
+	      layout[ax][start->cent.y].blocks = false;
       }
       for (bx = fin->cent.x; bx >= (fin->cent.x + start->cent.x) / 2; bx--)
       {
-        layout[bx][fin->cent.y].blocks = true;
+        layout[bx][fin->cent.y].blocks = false;
       }
    } else {
       for (ax = start->cent.x; ax >= (fin->cent.x + start->cent.x) / 2; ax--)
       {
-        layout[ax][start->cent.y].blocks = true;
+        layout[ax][start->cent.y].blocks = false;
       }
       for (bx = fin->cent.x; bx <= (fin->cent.x + start->cent.x) / 2; bx++)
       {
-        layout[bx][fin->cent.y].blocks = true;
+        layout[bx][fin->cent.y].blocks = false;
       }
    }
    if (start->cent.y <= fin->cent.y)
    {
       for (ay = start->cent.y; ay <  fin->cent.y; ay++)
       {
-         layout[ax][ay].blocks = true;
-         layout[ax+1][ay].blocks = true;
+         layout[ax][ay].blocks = false;
+         layout[ax+1][ay].blocks = false;
       }
    } else {
       for (by = fin->cent.y; by <= start->cent.y; by++)
@@ -200,23 +200,23 @@ void dungeon::crNB2(std::vector<Room*> rooms)
   {
     for (ay = start->cent.y; ay <= (start->cent.y + fin->cent.y) / 2; ay++)
     {
-   	layout[start->cent.x][ay].blocks = true;
-     layout[start->cent.x+1][ay].blocks=true;
+   	layout[start->cent.x][ay].blocks = false;
+     layout[start->cent.x+1][ay].blocks=false;
     }
     for (by = fin->cent.y; by >= (start->cent.y + fin->cent.y) / 2; by--)
     {
-        layout[fin->cent.x][by].blocks = true;
-        layout[fin->cent.x-1][by].blocks=true;
+        layout[fin->cent.x][by].blocks = false;
+        layout[fin->cent.x-1][by].blocks=false;
     }
   } else {
     for (ay = start->cent.y; ay >= (start->cent.y + fin->cent.y) / 2; ay--)
     {
-      layout[start->cent.x][ay].blocks = true;
-      layout[start->cent.x-1][ay].blocks = true;
+      layout[start->cent.x][ay].blocks = false;
+      layout[start->cent.x-1][ay].blocks = false;
     }
     for (by = fin->cent.y; by <= (start->cent.y + fin->cent.y) / 2; by++)
     {
-     layout[fin->cent.x][by].blocks = true;
+     layout[fin->cent.x][by].blocks = false;
      layout[fin->cent.x+1][by].blocks=false;
     }
   }
@@ -224,12 +224,12 @@ void dungeon::crNB2(std::vector<Room*> rooms)
   {
    for (ax = start->cent.x; ax <= fin->cent.x; ax++)
    {
-     layout[ax][ay].blocks = true;
+     layout[ax][ay].blocks = false;
    }
   } else {
    for (bx = fin->cent.x; bx <= start->cent.x; bx++)
    {
-     layout[bx][by].blocks = true;
+     layout[bx][by].blocks = false;
    }
   }
   i++;

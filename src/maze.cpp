@@ -80,7 +80,7 @@ void dfMaze::makeMaze()
     }
    if (!mbe.empty()) {
       rdir = mbe.at(getrand(0,mbe.size()-1));
-      layout[rdir.x][rdir.y].blocks = true;
+      layout[rdir.x][rdir.y].blocks = false;
       layout[rdir.x][rdir.y].ismaze = true;
       mbe.clear();
     }

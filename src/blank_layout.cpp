@@ -38,6 +38,7 @@ board::board(int mw, int mh)
         for (y = 0; y < mh; y++)
         {
             blank.layout[x][y].s = '.';
+            blank.layout[x][y].blocks = true;
         }
     }
   }

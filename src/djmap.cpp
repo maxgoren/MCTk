@@ -49,7 +49,7 @@ djMapper::djMapper(zone outline)
 
 bool djMapper::inBounds(Point p)
 {
-     return 0 <= p.x && p.x < this->mapW && 0 <= p.y && p.y < this->mapH;
+     return p.x >= 0 && p.x < this->mapW && p.y >= 0 && p.y < this->mapH;
 }
 
 
@@ -76,7 +76,7 @@ field djMapper::setMapValue(field layout, Point start, int cut)
       for (auto dir : cdir) 
       {
         next = {current.x + dir.x, current.y + dir.y}; 
-        if (inBounds(next) && layout[next.x][next.y].blocks == true)
+        if (inBounds(next) && layout[next.x][next.y].blocks == false)
         {
           if (seen[next.x][next.y] == false) 
           {
