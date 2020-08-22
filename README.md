@@ -13,6 +13,8 @@ Random integer and float generators, Perlin noise, and a maze generator, BSP dun
 and an interface for BLT's color_t type, just to name a few. A full list of 
 what is implemented is below. This is a work in progress, so not all of the bugs
 have been shaken out. More features will be added regularly.
+As of now mctk is a header based library. when a -STABLE version is reached a dynamic library
+versison will also be made available.
 
 How it works
 --------------
@@ -26,6 +28,8 @@ How it works
   the current scene/dungeon/&c. The board class (see blank_layout.h) creates an empty grid of a supplied
   size to be used for the layout. The Point structure has a .blocks value to indicate whether the current
   Point is a wall/obstacle or an open area.
+    'zones' are used to hold the field and other relative data about the map being created, for example,
+    if it is a maze or not. it also contains the height and width dimensions.
     Once you have generated your fields of desired size you can pass it through the maze generator, the dungeon
   generator, or implement something yourself through the shape classes, you may also combine options, such as 
   generating a maze field and passing the maze field to one of the dungeon generators to build on top of.
