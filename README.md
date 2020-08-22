@@ -16,20 +16,20 @@ have been shaken out. More features will be added regularly.
 As of now mctk is a header based library. when a -STABLE version is reached a dynamic library
 versison will also be made available.
 
-How it works
+## How it works
 --------------
 
 
-    Once bearlibterminal launches the console window, aside from basic input and out put pretty much
-  everything else is up to the programmer as far as features go. The apex data structure for creating
-  something useful with BLT is the 'Point' (see point.h)
-    The BLT console is grid based, so naturally the point makes an excellent choice to start with, and as
-  such most of whats here is focues around manipulating points on the grid. From pathfinding to dungeon generation
-  The abality to address and influence each spot on the grid is paramount.
-    The other important structure is the 'field'. The field is an N x M grid of Point's that makes up
-  the current scene/dungeon/&c. The board class (see blank_layout.h) creates an empty grid of a supplied
-  size to be used for the layout. The Point structure has a .blocks value to indicate whether the current
-  Point is a wall/obstacle or an open area.
+	Once bearlibterminal launches the console window, aside from basic input and out put pretty much
+everything else is up to the programmer as far as features go. The apex data structure for creating
+something useful with BLT is the 'Point' (see point.h)
+	The BLT console is grid based, so naturally the point makes an excellent choice to start with, and as
+such most of whats here is focues around manipulating points on the grid. From pathfinding to dungeon generation
+The abality to address and influence each spot on the grid is paramount.
+	The other important structure is the 'field'. The field is an N x M grid of Point's that makes up
+the current scene/dungeon/&c. The board class (see blank_layout.h) creates an empty grid of a supplied
+size to be used for the layout. The Point structure has a .blocks value to indicate whether the current
+Point is a wall/obstacle or an open area.
     'zones' are used to hold the field and other relative data about the map being created, for example,
     if it is a maze or not. it also contains the height and width dimensions.
     Once you have generated your fields of desired size you can pass it through the maze generator, the dungeon
@@ -47,11 +47,13 @@ How it works
  be in the same folder as mctk.h
  
  A minimum of C++11 is required to compile MCTk, with the code below saved as mctkexample.cpp:
+ ```
  compile:
  g++ --std=c++11 mctkexample.cpp -o mctkexample -L. libBearTerminal.dylib
  
  run
  ./mctkexample
+ ```
  
  ```cpp
 #include "BearLibTerminal.h"
