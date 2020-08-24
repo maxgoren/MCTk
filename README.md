@@ -96,6 +96,11 @@ composite dungeon and maze:
 ![With maze](https://www.maxcodes.info/~maxgoren/withmaze.png)
 
 
+basic dungeon set to maxrooms = 10 and maxsize = 9.
+Dijkstra mapping on and render() set to showingDmap = true
+
+![dmap colored](https://www.maxcodes.info/~maxgoren/dmapcolorized.png)
+
  Feature set
 --------------
 
