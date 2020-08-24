@@ -17,10 +17,10 @@ As of now mctk is a header based library. when a -STABLE version is reached a dy
 versison will also be made available.
 
 ## How it works
---------------
+----------------
 
 
-	Once bearlibterminal launches the console window, aside from basic input and out put pretty much
+Once bearlibterminal launches the console window, aside from basic input and out put pretty much
 everything else is up to the programmer as far as features go. The apex data structure for creating
 something useful with BLT is the 'Point' (see point.h)
 	The BLT console is grid based, so naturally the point makes an excellent choice to start with, and as
