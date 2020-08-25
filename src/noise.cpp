@@ -27,6 +27,19 @@ Noise::Noise()
 {
 
 }
+zone Noise::applyNoise(zone z)
+{
+    int x, y;
+    for (x = 0; x < z.mapW; x++)
+    {
+        for (y = 0; y < z.mapH; y++)
+        {
+            float nx = z.mapW/2 - 0.5; float ny=z.mapH/2-0.5; 
+            z.layout[x][y].nze = perlin(nx,ny);
+        }
+    }
+    return z;
+}
 
 float Noise::linearConvert(float value, float OldMin, float OldMax, float NewMin, float NewMax)
 {

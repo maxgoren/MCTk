@@ -45,6 +45,7 @@ public:
 
 class dungeon {
 public:
+bool hasmaze;
 int mapW;
 int mapH;
 Point spos;
@@ -62,7 +63,7 @@ void dig(Room*);
 void outLine();
 void basic(int, int);
 bool inbounds(Point p);
-field getField();
+zone getZone();
 void placeStairs(Point);
 void BSP();
 void conRoomStyle1(std::vector<Room*>);

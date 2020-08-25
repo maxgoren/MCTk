@@ -23,11 +23,14 @@ SOFTWARE.
 ******************************************************************************/
 namespace mctk {
 
-struct zone {
+class zone {
+   public:
    field layout;
+   std::vector<Point> openSpace;
    int mapW;
    int mapH;
    bool ismaze;
+   Point getSpawn();
 };
 
 }

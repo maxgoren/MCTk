@@ -30,6 +30,7 @@ SOFTWARE.
 #include <unordered_map>
 #include <unordered_set>
 #include <queue>
+#include <stack>
 #include "include/point.h"
 #include "include/field.h"
 #include "include/zone.h"
@@ -58,3 +59,5 @@ SOFTWARE.
 #include "src/noise.cpp"
 #include "src/queue.cpp"
 #include "src/stack.cpp"
+#include "src/render.cpp"
+#include "src/zone.cpp"

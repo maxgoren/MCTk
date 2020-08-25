@@ -26,15 +26,23 @@ SOFTWARE.
 struct Point {
   int x;
   int y;
-  int costm;
+  int costm; //weighting graph
   int level;
-  int id;
+  int id; // ?
   char s;
+  float nze; //perlin
   color_t color;
+  //visibility
   bool blocks;
   bool populated;
   bool border;
+  
+  //maze related
   bool ismaze;
+  bool top;
+  bool bottom;
+  bool left;
+  bool right;
   bool operator==(const Point& other) const {
     return x == other.x && y == other.y;
   }

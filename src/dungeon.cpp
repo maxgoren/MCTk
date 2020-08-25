@@ -27,6 +27,7 @@ dungeon::dungeon(zone outline)
     this->mapW = outline.mapW;
     this->mapH = outline.mapH;
     this->layout = outline.layout;
+    this->hasmaze = outline.ismaze;
 }
 dungeon::~dungeon()
 {
@@ -96,7 +97,7 @@ Room::Room(int X, int Y, int W, int H, int ID)
 void dungeon::BSP()
 {
     int level = 0;
-    int MAX_SIZE = 9;
+    int MAX_SIZE = 12;
     Room* root;
     Room* toSplit;
     std::vector<Room*> A;
@@ -171,9 +172,25 @@ void dungeon::BSP()
     outLine();
 }
 
-field dungeon::getField()
+zone dungeon::getZone()
 {
-    return this->layout;
+    int x, y;
+    zone retzone;
+    retzone.mapW = this->mapW;
+    retzone.mapH = this->mapH;
+    retzone.layout = this->layout;
+    retzone.ismaze = this->hasmaze;
+    for (x = 0; x < mapW; x++)
+    {
+     for (y = 0; y < mapH; y++)
+     {
+       if (layout[x][y].blocks == false)
+       {
+         retzone.openSpace.push_back(layout[x][y]);
+       }
+     }
+    }
+    return retzone;
 }
 
 

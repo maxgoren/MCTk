@@ -26,15 +26,36 @@ namespace mctk {
 class dfMaze {
 private:
  Point dir[8];
- bool seen[512][512];
+ std::vector<std::vector<bool>> seen;
  std::vector<Point> mbe;
- mctk::Stack<Point> staq;
+ std::stack<Point> staq;
 public:
  int mapH, mapW;
  field layout;
- zone getMaze();
+ zone getZone();
  void makeMaze();
  bool OOB(Point);
  dfMaze(mctk::zone outline);
 };
+
+class compMaze {
+    public:
+    std::stack<Point> backtrack;
+    std::array<Point, 4> dir;
+    int width;
+    int height;
+    int mapW, mapH;
+    int visited;
+    int totalCells;
+    std::vector<std::vector<bool>> seen;
+    field layout;
+    zone getZone();
+    void removeEdge(std::tuple<int, Point>);
+    std::vector<std::tuple<int, Point>> checkAdj(Point n);
+    bool OOB(Point n);
+    void start();
+    compMaze(mctk::zone outline);
+};
+
+
 }

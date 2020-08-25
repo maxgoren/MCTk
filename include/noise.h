@@ -29,6 +29,7 @@ class Noise {
       float lerp(float a0, float a1, float w);
       float dotGridGradient(int ix, int iy, float x, float y);
    public:
+      zone  applyNoise(zone z);
       float perlin(float x, float y);
    Noise();
 };

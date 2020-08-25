@@ -35,5 +35,6 @@ Point anchor;
   void render();
   void automove(field layout);
   ent(int x, int y, int id, char ch);
+  ent(Point, int id, char ch);
 };
 }
