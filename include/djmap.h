@@ -25,10 +25,10 @@ SOFTWARE.
 typedef std::vector<std::vector<Point>> field;
 namespace mctk {
 class djMapper {
-  Point cdir[8];
+  compass cmp;
   mctk::Queue<Point> que;
-  bool seen[512][512];
-  int distance[512][512];
+  std::vector<std::vector<bool>> seen;
+  std::vector<std::vector<int>> distance;
 public:
   int mapW, mapH;
   field layout;

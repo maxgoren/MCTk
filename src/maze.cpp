@@ -30,16 +30,6 @@ dfMaze::dfMaze(zone outline)
  this->mapH = outline.mapH;
  this->layout = outline.layout;
  seen.resize(outline.mapW, std::vector<bool>(outline.mapH));
-
- dir[0]={0,1}; //N
- dir[1]={0,-1}; //NE        
- dir[2]={-1,0}; //E         
- dir[3]={1,0}; //SE     
- dir[4]={1,-1}; //S       
- dir[5]={-1,-1}; //SW     
- dir[6]={-1,1}; //W     
- dir[7]={1,1}; //NW*/
- //yeah?
  for (x = 0; x < mapW; x++)
     {
       for (y = 0; y < mapH; y++)
@@ -88,7 +78,7 @@ void dfMaze::makeMaze()
   staq.pop();
    for (i = 0; i < 4; i++)
    {
-     next = {current.x + dir[i].x, current.y + dir[i].y};
+     next = {current.x + cmp.dir[i].x, current.y + cmp.dir[i].y};
      if (seen[next.x][next.y] == false)
      {
         if (OOB(next))
@@ -112,10 +102,6 @@ void dfMaze::makeMaze()
 
 compMaze::compMaze(mctk::zone outline)
 {
-    dir[0] = {0,-1}; //up;
-    dir[1] = {0,1}; //down;
-    dir[2] = {1,0}; //left;
-    dir[3] = {-1,0}; //right
     seen.resize(outline.mapW, std::vector<bool>(outline.mapH));
     this->mapW = outline.mapW;
     this->mapH = outline.mapH;
@@ -164,10 +150,11 @@ std::vector<std::tuple<int, Point>> compMaze::checkAdj(Point n)
 {
     std::vector<std::tuple<int, Point>> mbe;
     int i;
-    Point test;
+    Point test, dir;
     for (i = 0; i < 4; i++)
     {
-        test = {n.x + dir[i].x, n.y + dir[i].y};
+        dir = cmp.dir[i];
+        test = {n.x + dir.x, n.y + dir.y};
         if (OOB(test)) {
             if (seen[test.x][test.y] == false)
             {

@@ -25,7 +25,7 @@ namespace mctk {
 
 class dfMaze {
 private:
- Point dir[8];
+ compass cmp;
  std::vector<std::vector<bool>> seen;
  std::vector<Point> mbe;
  std::stack<Point> staq;
@@ -39,15 +39,16 @@ public:
 };
 
 class compMaze {
-    public:
+   private:
     std::stack<Point> backtrack;
-    std::array<Point, 4> dir;
+    compass cmp;
     int width;
     int height;
     int mapW, mapH;
     int visited;
     int totalCells;
     std::vector<std::vector<bool>> seen;
+   public:
     field layout;
     zone getZone();
     void removeEdge(std::tuple<int, Point>);

@@ -29,11 +29,7 @@ ent::ent(int x, int y, int id, char ch)
     this->pos.y = y;
     this->ch[0] = ch;
     this->ch[1] = '\0';
-    this->id = id;
-    compass[0] = {0, -1}; compass[4] = {1, -1};
-    compass[1] = {0, 1};  compass[5] = {1, 1};
-    compass[2] = {-1, 0}; compass[6] = {-1, 1};
-    compass[3] = {1, 0};  compass[7] = {-1, -1};
+    this->id = id;  
 }
 ent::ent(Point spawn, int id, char ch)
 {
@@ -42,10 +38,6 @@ ent::ent(Point spawn, int id, char ch)
     this->ch[0] = ch;
     this->ch[1] = '\0';
     this->id = id;
-    compass[0] = {0, -1}; compass[4] = {1, -1};
-    compass[1] = {0, 1};  compass[5] = {1, 1};
-    compass[2] = {-1, 0}; compass[6] = {-1, 1};
-    compass[3] = {1, 0};  compass[7] = {-1, -1};
 }
 
 bool ent::canMove(field layout, int x, int y)
@@ -90,11 +82,10 @@ void ent::automove(field layout)
   //best priority out of four choices.
   for (i = 0; i < 4; i++)
   {                      
-    dir = compass[i];          //loop through checking all the directions
+    dir = cmp.dir[i];          //loop through checking all the directions
     checking.x = pos.x + dir.x;
     checking.y = pos.y + dir.y;
     checking.level = layout[checking.x][checking.y].level;
-    std::cout<<"choice: "<<i<<" "<<checking.level<<"\n";
     if (checking.level < bestValue && layout[checking.x][checking.y].blocks == false 
     && layout[checking.x][checking.y].populated == false)
     {                                   //If the value being checked is lower than the current lowest &&

@@ -28,15 +28,15 @@ astar::astar(zone outline)
    this->layout = outline.layout;
    this->mapW = outline.mapW;
    this->mapH = outline.mapH;
-   cdir[0]={0,1}; 
-   cdir[2]={0,-1};         
-   cdir[4]={-1,0};          
-   cdir[6]={1,0};  
-
-   cdir[1]={1,-1};       
-   cdir[3]={-1,-1};     
-   cdir[5]={-1,1};     
-   cdir[7]={1,1};
+   visited.resize(mapW, std::vector<bool>(mapH));
+   int x, y;
+   for (x = 0; x < this->mapW; x++)
+   {
+      for (y = 0; y < this->mapH; y++)
+      {
+         visited[x][y] = false;
+      }
+    }
 }
 int astar::heuristic(Point A, Point B)
 {
@@ -58,7 +58,7 @@ void astar::addNeighbors(Point current, Point target)
 {
 
 int thiscost = 0;
-for (auto dir : cdir)
+for (auto dir : cmp.dir)
 {
    Point next= {current.x + dir.x, current.y + dir.y}; // dir.s );
    next.costm = layout[next.x][next.y].costm;

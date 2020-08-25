@@ -31,13 +31,13 @@ class breadthFirst {
       Point from; 
     };
     int mapW, mapH;
-    Point dir[8];
+    compass cmp;
     mctk::Queue<Point> queue;
     mctk::list<Edge> camefrom;
   public:
     field layout; 
-    int distance[80][40];
-    bool visited[80][40];
+    std::vector<std::vector<int>> distance;
+    std::vector<std::vector<bool>> visited;
     bool inbounds(Point p);
     bool bfs(Point start, Point fin);
     std::vector<Point> pathFind(Point start, Point fin);

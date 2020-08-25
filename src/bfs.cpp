@@ -28,10 +28,8 @@ breadthFirst::breadthFirst(zone outline)
  this->layout = outline.layout;
  this->mapW = outline.mapW;
  this->mapH = outline.mapH;
- dir[0]={0,1}; dir[4]={1,1};        
- dir[1]={1,0}; dir[5]={1,-1};     
- dir[2]={0,-1}; dir[6]={-1,-1};     
- dir[3]={-1,0}; dir[7]={-1,1}; 
+  visited.resize(mapW, std::vector<bool>(mapH));
+  distance.resize(mapW, std::vector<int>(mapH));
  int x, y;
  for (x = 0; x < this->mapW; x++)
  {
@@ -71,9 +69,9 @@ bool breadthFirst::bfs(Point start, Point fin)
     if (current == mark) return false; 
   }
   if (current == fin) return true;
-  for (i = 0; i < 8; i++)
+  for (auto dir : cmp.dir)
   {
-   next = {current.x + dir[i].x, current.y + dir[i].y};
+   next = {current.x + dir.x, current.y + dir.y};
    if (visited[next.x][next.y] == false && inbounds(next))
    {
       std::cout<<next.x<<"/"<<next.y<<"\n";

@@ -27,6 +27,8 @@ djMapper::djMapper(zone outline)
 {
    this->mapH = outline.mapH;
    this->mapW = outline.mapW;
+   seen.resize(mapW, std::vector<bool>(mapH));
+   distance.resize(mapW, std::vector<int>(mapH));
    int x, y;
    for (x = 0; x < mapW;x++)
    {
@@ -36,15 +38,7 @@ djMapper::djMapper(zone outline)
        distance[x][y] = INF;
      }
    }
- cdir[0]={0,1}; //N
- cdir[1]={0,-1}; //NE        
- cdir[2]={-1,0}; //E         
- cdir[3]={1,0}; //SE     
- cdir[4]={1,-1}; //S       
- cdir[5]={-1,-1}; //SW     
- cdir[6]={-1,1}; //W     
- cdir[7]={1,1}; //NW*/
-
+   
 }
 
 bool djMapper::inBounds(Point p)
@@ -73,7 +67,7 @@ field djMapper::setMapValue(field layout, Point start, int cut)
       } 
       if (level == cut)     
         break;
-      for (auto dir : cdir) 
+      for (auto dir : cmp.dir) 
       {
         next = {current.x + dir.x, current.y + dir.y}; 
         if (inBounds(next) && layout[next.x][next.y].blocks == false)
@@ -114,7 +108,7 @@ field djMapper::inverseField(field layout, Point start, int cut)
       } 
       if (level == cut)     
         break;
-      for (auto dir : cdir) 
+      for (auto dir : cmp.dir) 
       {
         next = {current.x + dir.x, current.y + dir.y}; 
         if (inBounds(next) && layout[next.x][next.y].blocks == true)

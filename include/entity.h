@@ -25,7 +25,7 @@ namespace mctk {
 typedef std::vector<std::vector<Point>> field;
 class ent {
 public:
-std::array<Point, 8> compass;
+compass cmp;
 Point pos;
 Point anchor;
   char ch[2];

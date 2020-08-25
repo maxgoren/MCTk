@@ -39,6 +39,7 @@ SOFTWARE.
 #include "include/stack.h"
 #include "include/blank_layout.h"
 #include "include/helpers.h"
+#include "include/compass.h"
 #include "include/djmap.h"
 #include "include/astar.h"
 #include "include/bfs.h"

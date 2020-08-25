@@ -43,13 +43,13 @@ struct Element {
 
 typedef std::vector<std::vector<Point>> field;
 class astar {
-  std::array<Point,8> cdir;  
+  compass cmp;
   std::priority_queue<Element, std::vector<Element>, std::greater<Element>> pque;
   std::unordered_map<Point, Point, hashkey> camefrom;
   std::unordered_map<Point, int, hashkey> effort;
 public:
   int mapW, mapH;
-  bool visited[512][512];
+  std::vector<std::vector<bool>> visited;
   field layout;
   void addNeighbors(Point current, Point target);
   bool search(Point origin, Point target);
