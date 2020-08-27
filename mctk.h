@@ -52,7 +52,6 @@ SOFTWARE.
 #include "include/colors.h"
 #include "include/noise.h"
 #include "include/entity.h"
-#include "include/hexagon.h"
 #include "src/tunnels.cpp"
 #include "src/dungeon.cpp"
 #include "src/bfs-dungeon.cpp"
