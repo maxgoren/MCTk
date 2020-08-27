@@ -22,21 +22,26 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 ******************************************************************************/
 #define INF -666
-typedef std::vector<std::vector<Point>> field;
+
 namespace mctk {
-class djMapper {
-  compass cmp;
-  mctk::Queue<Point> que;
-  std::vector<std::vector<bool>> seen;
-  std::vector<std::vector<int>> distance;
-public:
-  int mapW, mapH;
-  field layout;
-  field setMapValue(field layout, Point origin, int cut);
-  field setInverseValue(field layout, Point origin, int cut);
-  field setMultiValue(field layout, std::vector<Point> origins, int cut);
-  bool inBounds(Point p);
-  void reset();
-  djMapper(zone outline);
+class bfDungeon {
+ private:
+    std::vector<std::vector<int>> distance;
+    std::vector<std::vector<bool>> seen;
+    bool hasmaze;
+    int mapW, mapH;
+    std::queue<Point> queue;
+  public:
+    field layout; 
+    zone getZone();
+    int dist(Point a, Point b);
+    bool inbounds(Point p);
+    void putWalls();
+    void putDoors(std::vector<std::vector<Point>> wallvec);
+    void plantSeeds();
+    void makeRooms(std::vector<Point> seeds);
+    void reset();
+    bfDungeon(zone outline);
 };
+
 }

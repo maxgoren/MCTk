@@ -31,6 +31,9 @@ SOFTWARE.
 #include <unordered_set>
 #include <queue>
 #include <stack>
+#include <cstdio>
+#include <cstdlib>
+#include <cstring>
 #include "include/point.h"
 #include "include/field.h"
 #include "include/zone.h"
@@ -43,13 +46,16 @@ SOFTWARE.
 #include "include/djmap.h"
 #include "include/astar.h"
 #include "include/bfs.h"
-#include "include/maze.h"
 #include "include/dungeon.h"
+#include "include/bfs-dungeon.h"
+#include "include/maze.h"
 #include "include/colors.h"
 #include "include/noise.h"
 #include "include/entity.h"
+#include "include/hexagon.h"
 #include "src/tunnels.cpp"
 #include "src/dungeon.cpp"
+#include "src/bfs-dungeon.cpp"
 #include "src/astar.cpp"
 #include "src/bfs.cpp"
 #include "src/blank_layout.cpp"

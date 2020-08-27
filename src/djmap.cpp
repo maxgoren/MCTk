@@ -27,8 +27,8 @@ djMapper::djMapper(zone outline)
 {
    this->mapH = outline.mapH;
    this->mapW = outline.mapW;
-   seen.resize(mapW, std::vector<bool>(mapH));
-   distance.resize(mapW, std::vector<int>(mapH));
+   seen.resize(mapW+2, std::vector<bool>(mapH+2));
+   distance.resize(mapW+2, std::vector<int>(mapH+2));
    int x, y;
    for (x = 0; x < mapW;x++)
    {
@@ -52,8 +52,9 @@ field djMapper::setMapValue(field layout, Point start, int cut)
    reset();
    Point current, next, marker = {INF, INF}; 
    int level = 1;      
-   distance[start.x][start.y] = level;
+   distance[start.x][start.y] = 0;
    seen[start.x][start.y] = true;
+   layout[start.x][start.x].level = 0;
    que.push(start);   
    que.push(marker);   
    while (!que.empty())
@@ -87,7 +88,7 @@ field djMapper::setMapValue(field layout, Point start, int cut)
 }
 
 
-field djMapper::inverseField(field layout, Point start, int cut)
+field djMapper::setInverseValue(field layout, Point start, int cut)
 {
     reset();
     Point current, next, marker = {INF, INF}; 
@@ -126,6 +127,53 @@ field djMapper::inverseField(field layout, Point start, int cut)
    que.clear();
    return layout;
 }
+
+field djMapper::setMultiValue(field layout, std::vector<Point> origins, int cut)
+{
+   reset();
+   Point current, next, marker = {INF, INF}; 
+   int level = 1;  
+   for (auto start : origins)
+   { 
+     distance[start.x][start.y] = 0;
+     seen[start.x][start.y] = true;
+     layout[start.x][start.y].level = 0;
+     que.push(start);
+   }   
+   que.push(marker);   
+   while (!que.empty())
+   {
+     current = que.pop();    
+      if (current == marker) 
+      { 
+        level++; que.push(marker); 
+        if (que.front() == marker) 
+          break;                   
+      } 
+      if (level == cut)     
+        break;
+      for (auto dir : cmp.dir) 
+      {
+        next = {current.x + dir.x, current.y + dir.y}; 
+        if (inBounds(next) && layout[next.x][next.y].blocks == false)
+        {
+          if (seen[next.x][next.y] == false) 
+          {
+            que.push(next);         
+            seen[next.x][next.y]=true;
+            distance[next.x][next.y] = level;
+            layout[next.x][next.y].level = level;
+          }
+        }
+      }
+   
+   }
+   que.clear();
+   for (auto s : origins)
+   layout[s.x][s.y].level = 0;
+   return layout;
+}
+
 
 void djMapper::reset()
 {
