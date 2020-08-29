@@ -103,6 +103,7 @@ void bfDungeon::putWalls()
 
 void bfDungeon::putDoors(std::vector<std::vector<Point>> wallvec)
 {
+  int i;
   std::vector<Point> possiblesX;
   std::vector<Point> possiblesY;
   Point nd,nd2, nd3;
@@ -128,18 +129,22 @@ void bfDungeon::putDoors(std::vector<std::vector<Point>> wallvec)
     possiblesX.clear();
     possiblesY.clear();
   }
+  for (i = 0; i < mapH; i++)
+  {
+    
+  }
 
 }
 
-void bfDungeon::plantSeeds()
+void bfDungeon::plantSeeds(int numSeeds, int MAX_SIZE)
 {
   int x[5], y[5];
-  int i, numSeeds = 0;
+  int i, seedsMade = 0;
   bool cont = false;
   std::vector<Point> seeds;
   Point next;
 
-  while (numSeeds < 40)
+  while (seedsMade < numSeeds)
   {
     x[0] = getrand(5, mapW/2);
     y[0] = getrand(5, mapH/2);
@@ -168,15 +173,15 @@ void bfDungeon::plantSeeds()
       if (cont)
       {
         seeds.push_back(next);
-        numSeeds++;
+        seedsMade++;
         cont = false;
       }
     }
   }
-  makeRooms(seeds);
+  makeRooms(seeds, MAX_SIZE);
 }
 
-void bfDungeon::makeRooms(std::vector<Point> seeds)
+void bfDungeon::makeRooms(std::vector<Point> seeds, int MAX_SIZE)
 {
   bool makingRoom = true;
   int roomNum = 1;
@@ -201,7 +206,7 @@ void bfDungeon::makeRooms(std::vector<Point> seeds)
    {
     current = queue.front();
     queue.pop();
-    if (dist_now[current] > 9)
+    if (dist_now[current] > MAX_SIZE)
       makingRoom = false;
     if (makingRoom)
     {
@@ -219,7 +224,7 @@ void bfDungeon::makeRooms(std::vector<Point> seeds)
             distance[next.x][next.y] = dist_now[current] + 1;
           }
           layout[next.x][next.y].blocks = false;
-          if (dist_now[next] > 9)
+          if (dist_now[next] > MAX_SIZE)
             walls.push_back(layout[next.x][next.y]);
         }
       }

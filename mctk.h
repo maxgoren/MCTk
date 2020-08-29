@@ -52,6 +52,7 @@ SOFTWARE.
 #include "include/colors.h"
 #include "include/noise.h"
 #include "include/entity.h"
+#include "include/engine.h"
 #include "src/tunnels.cpp"
 #include "src/dungeon.cpp"
 #include "src/bfs-dungeon.cpp"
@@ -67,3 +68,4 @@ SOFTWARE.
 #include "src/stack.cpp"
 #include "src/render.cpp"
 #include "src/zone.cpp"
+#include "src/engine.cpp"

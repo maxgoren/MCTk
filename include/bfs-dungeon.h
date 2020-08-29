@@ -38,8 +38,8 @@ class bfDungeon {
     bool inbounds(Point p);
     void putWalls();
     void putDoors(std::vector<std::vector<Point>> wallvec);
-    void plantSeeds();
-    void makeRooms(std::vector<Point> seeds);
+    void plantSeeds(int numSeeds, int MAX_SIZE);
+    void makeRooms(std::vector<Point> seeds, int MAX_SIZE);
     void reset();
     bfDungeon(zone outline);
 };
