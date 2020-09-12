@@ -2,9 +2,10 @@ namespace mctk {
 class GameEngine {
 private:
     //GameBoard
-     mctk::board blanklayout;        
+     mctk::board* blanklayout;        
      mctk::zone base;                     
      mctk::bfDungeon* dg;
+     mctk::Cave* cave;
      mctk::compMaze* cmz;
      mctk::djMapper* dj;
      //Characters

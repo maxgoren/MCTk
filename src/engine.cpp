@@ -3,15 +3,18 @@ using namespace std;
 GameEngine::GameEngine()
 {
      //Setup Laout and Zone info
-     mctk::board blanklayout = board(80, 40);         
-     base = blanklayout.getZone();
+     blanklayout = new board(80, 40);         
+     base = blanklayout->getZone();
      //Setup dungeon generator                        
      cmz = new compMaze(base);
-     cmz->start();
-     base = cmz->getZone();
+     //cmz->start();
+     //base = cmz->getZone();
      dg = new bfDungeon(base);
-    // dg->plantSeeds(25, 5); //60 seeds for 5x5 rooms.
+     //dg->plantSeeds(25, 5); //60 seeds for 5x5 rooms.
      //base = dg->getZone();
+     cave = new Cave(base);
+     cave->make_cave();
+     base = cave->getZone();
      //Dijkstra Mapping
      dj = new djMapper(base);
     //Characters (player & NPC)

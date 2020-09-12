@@ -21,9 +21,11 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 ******************************************************************************/
+
 #include <iostream>
 #include <vector>
 #include <array>
+#include <list>
 #include <random>
 #include <tuple>
 #include <algorithm>
@@ -52,6 +54,7 @@ SOFTWARE.
 #include "include/colors.h"
 #include "include/noise.h"
 #include "include/entity.h"
+#include "include/cave.h"
 #include "include/engine.h"
 #include "src/tunnels.cpp"
 #include "src/dungeon.cpp"
@@ -59,6 +62,7 @@ SOFTWARE.
 #include "src/astar.cpp"
 #include "src/bfs.cpp"
 #include "src/blank_layout.cpp"
+#include "src/cave.cpp"
 #include "src/djmap.cpp"
 #include "src/entity.cpp"
 #include "src/list.cpp"
