@@ -116,10 +116,14 @@ Generators:
 
 Random Number - integer and float
 
-Dungeon - There is 2 dungeon generating algorithms available for use at those moment:
-	- Basic Map generator - uses random place ment and collision detection to build a dungeon layout
-	- BSP Map generator - this uses Binary Space Partition to create a zero overlapping, or minor overlapping room
+Map Generators - There are several dungeon generating algorithms available for use at those moment:
+	       - Basic Map generator - uses random place ment and collision detection to build a dungeon layout
+	       - BSP Map generator - this uses Binary Space Partition to create a zero overlapping, or minor overlapping room
 				layout depending on your desired tolerance constraints.
+	       - Asymetrical growth - this crates a grid of connected rooms with doors between them no cooridors.
+	       - Cave gen #1 - this uses the Four/Five Cellular Automata rule to make caves and employs flood fill to ensure
+	                       all areas are reachable.
+               - Cave gen #2 - This generator uses a "drunken walk" algorithm to create nice organic looking caves.
 
 Maze generator - input a field and this outputs a maze! can be used standalone or combined with one of the above dungeon generators
 		to make more complex maps.
